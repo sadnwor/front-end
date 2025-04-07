@@ -18,7 +18,6 @@ const getters = {
 };
 
 const actions = {
-  // Lấy comments cho một bài viết
   async fetchComments({ commit }, postId) {
     commit('SET_LOADING', true);
     commit('SET_ERROR', null);
@@ -59,9 +58,6 @@ const actions = {
         throw new Error(errorMsg);
      }
 
-    // Không set loading/error ở đây vì form sẽ tự xử lý
-    // commit('SET_LOADING', true);
-    // commit('SET_ERROR', null);
     try {
       const commentData = {
         text: text.trim(),

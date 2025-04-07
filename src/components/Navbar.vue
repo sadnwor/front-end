@@ -1,7 +1,7 @@
 <template>
     <nav v-if="isLoggedIn" class="navbar">
       <router-link to="/" class="navbar-brand-link">
-        <img
+        <img 
           src="../assets/img/logo.png"
           alt="MyNewsApp Logo"
           class="navbar-logo"
@@ -18,7 +18,7 @@
           <i class="fas fa-plus-square nav-icon"></i> </router-link>
         </div>
       <div class="navbar-user">
-        <span>Hi, {{ username }}</span>
+        <span>{{ username }}</span>
         <router-link to="/profile" class="avatar-link" title="Go to Profile">
           <img v-if="avatarUrl" :src="avatarUrl" alt="User Avatar" class="navbar-avatar">
           <div v-else class="navbar-avatar default-avatar">?</div>
@@ -71,16 +71,7 @@ const handleLogout = () => {
     width: auto; /* Chiều rộng tự động theo tỷ lệ */
     display: block; /* Loại bỏ khoảng trống thừa dưới ảnh */
   }
-  
-  /* Style cho text bên cạnh logo (nếu bạn muốn giữ lại) */
-  /*
-  .navbar-brand-text {
-    font-weight: bold;
-    font-size: 1.4em;
-    color: #333;
-    margin-left: 10px;
-  }
-  */
+
   
  
   .navbar-links a {

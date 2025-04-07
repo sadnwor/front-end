@@ -35,7 +35,7 @@
   
   <script setup>
   import { defineProps, computed } from 'vue';
-  import { useStore } from 'vuex'; // <-- Import useStore
+  import { useStore } from 'vuex'; 
   
   const props = defineProps({
     post: {
@@ -44,55 +44,44 @@
     }
   });
   
-  const store = useStore(); // <-- Khởi tạo store
+  const store = useStore(); 
   
-  // --- Lấy thông tin người dùng hiện tại ---
   const currentUser = computed(() => store.getters['auth/currentUser']);
   
-  // --- Tính toán trạng thái và số lượt thích ---
   const likeCount = computed(() => props.post.likedBy?.length || 0);
   
   const isLikedByCurrentUser = computed(() => {
     if (!currentUser.value || !Array.isArray(props.post.likedBy)) {
       return false;
     }
-    // Kiểm tra xem username có trong mảng likedBy không
     return props.post.likedBy.includes(currentUser.value.username);
   });
   
-  // Placeholder avatar (giữ nguyên)
-  const defaultAvatar = 'https://via.placeholder.com/40x40?text=?';
+  const defaultAvatar = '../assets/img/default-avatar.png';
   
-  // timeAgo (giữ nguyên)
-  const timeAgo = (dateString) => { /* ... */
+  const timeAgo = (dateString) => { 
       if (!dateString) return ''; const date = new Date(dateString); const seconds = Math.floor((new Date() - date) / 1000); let interval = seconds / 31536000; if (interval > 1) return Math.floor(interval) + "y ago"; interval = seconds / 2592000; if (interval > 1) return Math.floor(interval) + "mo ago"; interval = seconds / 86400; if (interval > 1) return Math.floor(interval) + "d ago"; interval = seconds / 3600; if (interval > 1) return Math.floor(interval) + "h ago"; interval = seconds / 60; if (interval > 1) return Math.floor(interval) + "m ago"; return Math.floor(seconds) + "s ago";
   };
   
   
-  // --- Hàm xử lý khi nhấn nút Like/Unlike ---
   const toggleLike = () => {
     if (!currentUser.value) {
       console.warn("User must be logged in to like posts.");
-      // Có thể hiện thông báo yêu cầu đăng nhập
       return;
     }
   
     const postId = props.post.id;
     if (isLikedByCurrentUser.value) {
-      // Nếu đã thích -> gọi action unlike
       store.dispatch('posts/unlikePost', postId);
     } else {
-      // Nếu chưa thích -> gọi action like
       store.dispatch('posts/likePost', postId);
     }
-    // Không cần chờ await vì Vuex sẽ tự cập nhật state và component sẽ render lại
-    // Trạng thái loading cho nút like có thể thêm sau nếu muốn phức tạp hơn
+
   };
   
   </script>
   
   <style scoped>
-  /* ... (các style .post-card, .post-header, .author-link, ... giữ nguyên) ... */
   .post-card { background-color: #fff; border: 1px solid #dbdbdb; border-radius: 8px; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.05); }
   .post-header { display: flex; align-items: center; padding: 10px 15px; border-bottom: 1px solid #efefef; }
   .author-link { display: flex; align-items: center; text-decoration: none; color: inherit; flex-grow: 1; }
@@ -115,24 +104,22 @@
     font-size: 0.85em;
     display: flex;
     align-items: center;
-    gap: 6px; /* Tăng khoảng cách icon và text */
-    color: #262626; /* Màu nút mặc định */
+    gap: 6px;
+    color: #262626; 
   }
   .action-btn i {
-    font-size: 1.4em; /* Tăng kích thước icon */
-    line-height: 1; /* Căn chỉnh icon tốt hơn */
+    font-size: 1.4em; 
+    line-height: 1; 
   }
   
-  /* Style cho nút Like khi đã thích */
   .like-btn.liked i {
-    color: red; /* Màu đỏ cho trái tim đã thích */
-    font-weight: bold; /* Có thể dùng icon solid (fas) thay vì chỉ đổi màu */
+    color: red;
+    font-weight: bold;
   }
   .like-btn.liked {
-     color: red; /* Đổi cả màu text nếu muốn */
+     color: red; 
   }
   
-  /* Style cho nút comment (là link) */
   .comment-btn {
      text-decoration: none;
      color: #262626;

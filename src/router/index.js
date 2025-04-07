@@ -26,7 +26,6 @@ const routes = [
     props: true,
     meta: { requiresAuth: true },
   },
-  // --- Route tạo bài viết mới (đã thêm) ---
    {
      path: '/post/new',
      name: 'createPost',

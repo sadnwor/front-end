@@ -27,7 +27,6 @@
   import { useStore } from 'vuex';
   import { useRoute, useRouter } from 'vue-router';
   import PostCard from '@/components/PostCard.vue';
-  // Import các component comment mới
   import CommentList from '@/components/CommentList.vue';
   import AddCommentForm from '@/components/AddCommentForm.vue';
   
@@ -42,11 +41,7 @@
   
   const fetchDetails = (id) => {
     if (id) {
-      // Fetch chi tiết bài viết (bao gồm cả likedBy)
       store.dispatch('posts/fetchPostDetails', id);
-      // Fetch comments riêng biệt (action này đã có trong CommentList,
-      // nhưng gọi ở đây cũng không sao, hoặc bỏ đi nếu CommentList tự gọi)
-      // store.dispatch('comments/fetchComments', id);
     }
   };
   
@@ -61,7 +56,6 @@
   watch(error, (newError) => {
      if (newError && newError.includes('Post not found')) {
          console.warn("Post not found, consider redirecting.");
-         // router.push({ name: 'NotFound' });
      }
   });
   
@@ -71,7 +65,6 @@
   .post-detail-view {
     max-width: 600px;
     margin: 1.5rem auto;
-    /* padding: 0 10px; */ /* Bỏ padding ở đây nếu content chiếm cả */
   }
   
   .loading-message, .not-found-message {
@@ -87,7 +80,6 @@
     background-color: #fff;
     border: 1px solid #dbdbdb;
     border-radius: 8px;
-    /* Không cần padding ở đây vì PostCard và CommentList/Form đã có */
   }
   
   .detail-postcard.post-card {
@@ -95,8 +87,8 @@
     border-bottom: none;
     border-bottom-left-radius: 0;
     border-bottom-right-radius: 0;
-    box-shadow: none; /* Bỏ shadow của card khi ở trang chi tiết */
-    border: none; /* Bỏ luôn border của card */
+    box-shadow: none;
+    border: none; 
   }
   
   .back-link {

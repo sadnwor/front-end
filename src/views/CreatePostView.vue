@@ -6,7 +6,6 @@
   </template>
   
   <script setup>
-  // Import component form
   import CreatePostForm from '@/components/CreatePostForm.vue';
   </script>
   

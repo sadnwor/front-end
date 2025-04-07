@@ -9,5 +9,4 @@
   </script>
   
   <style scoped>
-  /* Style cho trang register nếu cần */
   </style>

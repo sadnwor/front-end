@@ -13,34 +13,30 @@
 
 <script setup>
 import Navbar from '@/components/Navbar.vue';
-import Footer from '@/components/Footer.vue'; // Import Footer
+import Footer from '@/components/Footer.vue'; 
 </script>
 
 <style>
 /* Import base styles */
 @import '@/assets/base.css';
-@import '@/assets/main.css'; /* Import main.css nếu bạn có style toàn cục ở đó */
+@import '@/assets/main.css'; 
 
-/* Layout chính sử dụng flexbox để đẩy footer xuống */
 #app-wrapper {
   display: flex;
   flex-direction: column;
-  min-height: 100vh; /* Đảm bảo chiều cao tối thiểu bằng màn hình */
-  background-color: var(--color-background-soft, #f8f9fa); /* Nền nhẹ cho toàn trang */
+  min-height: 100vh; 
+  background-color: var(--color-background-soft, #f8f9fa); 
 }
 
 .main-content {
-  flex-grow: 1; /* Quan trọng: Cho phép main content chiếm không gian còn lại */
-  padding: 0; /* Bỏ padding cũ nếu có */
-  /* max-width: 1200px; */ /* Bỏ max-width ở đây nếu muốn content full width hơn */
-  /* margin: 0 auto; */
+  flex-grow: 1; 
+  padding: 0;
   width: 100%;
 }
 
-/* Transition effect (giữ nguyên) */
 .fade-enter-active,
 .fade-leave-active {
-  transition: opacity 0.2s ease; /* Giảm thời gian transition */
+  transition: opacity 0.2s ease; 
 }
 .fade-enter-from,
 .fade-leave-to {

@@ -34,39 +34,28 @@
 <script setup>
 import { computed, onMounted } from 'vue';
 import { useStore } from 'vuex';
-// import PostCard from '@/components/PostCard.vue'; // Có thể dùng PostCard hoặc layout riêng
 
 const store = useStore();
 
-// Lấy thông tin user hiện tại từ module 'user'
 const currentUserProfile = computed(() => store.getters['user/userProfile']);
-const currentUsername = computed(() => store.getters['auth/currentUser']?.username); // Lấy username từ auth
+const currentUsername = computed(() => store.getters['auth/currentUser']?.username); 
 
-// Lấy danh sách *tất cả* bài viết và trạng thái loading từ module 'posts'
 const allPosts = computed(() => store.getters['posts/allPosts']);
-const isLoadingPosts = computed(() => store.getters['posts/isLoading']); // Dùng chung loading của posts
+const isLoadingPosts = computed(() => store.getters['posts/isLoading']);
 
-// --- Lọc ra các bài viết của người dùng hiện tại ---
 const myPosts = computed(() => {
   if (!currentUsername.value || !Array.isArray(allPosts.value)) {
     return [];
   }
-  // Lọc client-side (đơn giản cho mô phỏng)
   return allPosts.value.filter(post => post.authorUsername === currentUsername.value);
-  // LƯU Ý: Với lượng lớn bài viết, nên tạo action/getter/service riêng
-  // để chỉ fetch/lấy bài viết của user đó từ "backend" (localStorage).
 });
 
-// Placeholder avatar mặc định
-const defaultAvatar = 'https://via.placeholder.com/80x80?text=?';
+const defaultAvatar = '../assets/img/default-avatar.png';
 
-// Fetch posts nếu chưa có khi component mount
-// Fetch profile cũng nên được đảm bảo đã chạy sau khi login
 onMounted(() => {
   if (!allPosts.value || allPosts.value.length === 0) {
     store.dispatch('posts/fetchPosts');
   }
-  // Đảm bảo profile đã được fetch (thường là sau login)
   if(!currentUserProfile.value && currentUsername.value) {
       store.dispatch('user/fetchProfile', currentUsername.value);
   }
@@ -76,7 +65,7 @@ onMounted(() => {
 
 <style scoped>
 .my-posts-view {
-  max-width: 900px; /* Rộng hơn trang feed */
+  max-width: 900px;
   margin: 1.5rem auto;
   padding: 1.5rem;
 }
@@ -87,11 +76,11 @@ onMounted(() => {
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid #dbdbdb;
-  gap: 20px; /* Khoảng cách giữa avatar và text */
+  gap: 20px; 
 }
 
 .profile-avatar {
-  width: 80px; /* Kích thước avatar lớn hơn */
+  width: 80px; 
   height: 80px;
   border-radius: 50%;
   object-fit: cover;
@@ -99,10 +88,10 @@ onMounted(() => {
 }
 
 .profile-username {
-  font-size: 1.8em; /* Tên user lớn */
-  font-weight: 300; /* Mỏng hơn */
+  font-size: 1.8em;
+  font-weight: 300; 
   margin: 0;
-  flex-grow: 1; /* Đẩy các phần tử khác sang phải */
+  flex-grow: 1; 
 }
 .post-count {
    font-size: 1em;
@@ -135,7 +124,7 @@ onMounted(() => {
 h2 {
   text-align: center;
   font-weight: 600;
-  color: #8e8e8e; /* Màu xám */
+  color: #8e8e8e; 
   font-size: 0.9em;
   text-transform: uppercase;
   letter-spacing: 1px;
@@ -158,16 +147,16 @@ h2 {
 
 .my-posts-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Grid tự động điều chỉnh */
-  gap: 1.5rem; /* Khoảng cách giữa các ảnh */
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 1.5rem; 
 }
 
 .my-post-item {
-   position: relative; /* Cho overlay */
-   aspect-ratio: 1 / 1; /* Giữ tỷ lệ vuông */
-   background-color: #eee; /* Nền mờ */
+   position: relative; 
+   aspect-ratio: 1 / 1; 
+   background-color: #eee; 
    border-radius: 4px;
-   overflow: hidden; /* Ẩn phần thừa của ảnh/overlay */
+   overflow: hidden;
 }
 .my-post-item a {
    display: block;
@@ -178,7 +167,7 @@ h2 {
 .post-thumbnail {
   width: 100%;
   height: 100%;
-  object-fit: cover; /* Đảm bảo ảnh vừa và không méo */
+  object-fit: cover;
   display: block;
 }
 .post-thumbnail.no-image {
@@ -196,19 +185,19 @@ h2 {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.3); /* Lớp phủ mờ */
+  background-color: rgba(0, 0, 0, 0.3);
   color: white;
   display: flex;
   justify-content: center;
   align-items: center;
   gap: 15px;
-  opacity: 0; /* Ẩn mặc định */
+  opacity: 0; 
   transition: opacity 0.2s ease;
   font-weight: 600;
   font-size: 1.1em;
 }
 .my-post-item a:hover .post-overlay {
-  opacity: 1; /* Hiện khi hover */
+  opacity: 1; 
 }
 .post-overlay span {
    display: flex;

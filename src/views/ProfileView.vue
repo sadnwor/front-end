@@ -20,14 +20,6 @@
   const userProfile = computed(() => store.getters['user/userProfile']);
   const isLoading = computed(() => store.getters['user/isLoading']);
   
-  // Không cần gọi fetchProfile ở đây nữa vì đã gọi sau khi login/rehydrate
-  // Nếu muốn đảm bảo load lại khi vào trang profile, có thể thêm:
-  // import { onMounted } from 'vue';
-  // onMounted(() => {
-  //    if (!userProfile.value && store.getters['auth/currentUser']?.username) {
-  //       store.dispatch('user/fetchProfile', store.getters['auth/currentUser'].username);
-  //    }
-  // });
   </script>
   
   <style scoped>
