@@ -4,52 +4,237 @@ const FAKE_LATENCY_LIKE = 200;
 const POSTS_STORAGE_KEY = 'vue_posts_db';
 
 const initialPosts = [
-    {
-      id: 'p1700000000001',
-      authorUsername: 'userA',
-      authorAvatarUrl: './avadefaur.png',
-      content: 'Chào buổi sáng! Hôm nay Hưng Yên nắng đẹp. #morning #hungyen',
-      imageUrl: '/run.jpg',
-      createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
-      likedBy: ['userB', 'userC', 'caohao'],
-      comments: [],
-      commentCount: 2
-    },
-
-    {
-      id: 'p1700000000002',
-      authorUsername: 'userB',
-      authorAvatarUrl: null,
-      content: 'Hôm nay trời mát mẻ, rất thích hợp để đi dạo.',
-      imageUrl: null,
-      createdAt: new Date(Date.now() - 86400000).toISOString(),
-      likedBy: ['userA'],
-      comments: [],
-      commentCount: 1
-    },
- 
-    {
-      id: 'p1700000000003',
-      authorUsername: 'userB',
-      authorAvatarUrl: null,
-      content: 'Thưởng thức cà phê cuối tuần.',
-      imageUrl: "/anh2.jpg",
-      createdAt: new Date(Date.now() - 86400000).toISOString(),
-      likedBy: ['userA'],
-      comments: [],
-      commentCount: 1
-    },
      {
-      id: 'p1700000000004',
-      authorUsername: 'caohao',
-      authorAvatarUrl: null,
-      content: 'Trời xanh, mây trắng, nắng vàng.',
-      imageUrl: '/halan.jpg',
-      createdAt: new Date().toISOString(),
-      likedBy: [],
-      comments: [],
-      commentCount: 0 
-    }
+    id: 'p1700000000001',
+    authorUsername: 'userA',
+    authorAvatarUrl: './avadefaur.png',
+    content: 'Chào buổi sáng! Hôm nay Hưng Yên nắng đẹp. #morning #hungyen',
+    imageUrl: '/run.jpg',
+    createdAt: new Date(Date.now() - 86400000 * 2).toISOString(),
+    likedBy: ['userB', 'userC', 'caohao'],
+    comments: [],
+    commentCount: 2
+  },
+  {
+    id: 'p1700000000002',
+    authorUsername: 'userB',
+    authorAvatarUrl: null,
+    content: 'Hôm nay trời mát mẻ, rất thích hợp để đi dạo.',
+    imageUrl: null,
+    createdAt: new Date(Date.now() - 86400000).toISOString(),
+    likedBy: ['userA'],
+    comments: [],
+    commentCount: 1
+  },
+  {
+    id: 'p1700000000003',
+    authorUsername: 'userB',
+    authorAvatarUrl: null,
+    content: 'Thưởng thức cà phê cuối tuần.',
+    imageUrl: '/anh2.jpg',
+    createdAt: new Date(Date.now() - 86400000).toISOString(),
+    likedBy: ['userA'],
+    comments: [],
+    commentCount: 1
+  },
+  {
+    id: 'p1700000000004',
+    authorUsername: 'caohao',
+    authorAvatarUrl: null,
+    content: 'Trời xanh, mây trắng, nắng vàng.',
+    imageUrl: '/halan.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: [],
+    comments: [],
+    commentCount: 0
+  },
+  {
+    id: 'p1700000000005',
+    authorUsername: 'userC',
+    authorAvatarUrl: null,
+    content: 'Hôm nay thử món bún cá cay Hải Phòng, ngon không tưởng!',
+    imageUrl: '/bunca.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: ['userA', 'userB'],
+    comments: [],
+    commentCount: 3
+  },
+  {
+    id: 'p1700000000006',
+    authorUsername: 'userD',
+    authorAvatarUrl: './avadefaur.png',
+    content: 'Trà hoa cúc giúp mình ngủ ngon hơn hẳn. Recommend mạnh! 🌼',
+    imageUrl: '/trahoacuc.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: ['userC'],
+    comments: [],
+    commentCount: 0
+  },
+  {
+    id: 'p1700000000007',
+    authorUsername: 'userE',
+    authorAvatarUrl: null,
+    content: 'Đã lâu lắm rồi mới có một buổi hoàng hôn đẹp đến thế.',
+    imageUrl: '/hoanghon.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: [],
+    comments: [],
+    commentCount: 0
+  },
+  {
+    id: 'p1700000000008',
+    authorUsername: 'userF',
+    authorAvatarUrl: null,
+    content: 'Vintage outfit hôm nay nè mọi người 😎 #2hand #outfitcheck',
+    imageUrl: '/outfit1.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: ['userA', 'userB', 'userC'],
+    comments: [],
+    commentCount: 4
+  },
+  {
+    id: 'p1700000000009',
+    authorUsername: 'userG',
+    authorAvatarUrl: null,
+    content: 'Hôm nay đi chợ mua được mớ rau tươi cực kỳ rẻ!',
+    imageUrl: null,
+    createdAt: new Date().toISOString(),
+    likedBy: ['userC'],
+    comments: [],
+    commentCount: 1
+  },
+  {
+    id: 'p1700000000010',
+    authorUsername: 'userH',
+    authorAvatarUrl: null,
+    content: 'Bạn đã thử detox với trà hoa cúc chưa?',
+    imageUrl: '/detox.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: [],
+    comments: [],
+    commentCount: 0
+  },
+  {
+    id: 'p1700000000011',
+    authorUsername: 'userI',
+    authorAvatarUrl: null,
+    content: 'Check-in đầu tuần với năng lượng tích cực 💪',
+    imageUrl: '/monday.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: ['userA'],
+    comments: [],
+    commentCount: 1
+  },
+  {
+    id: 'p1700000000012',
+    authorUsername: 'userJ',
+    authorAvatarUrl: null,
+    content: 'Tối nay nên xem phim gì mọi người ơi?',
+    imageUrl: null,
+    createdAt: new Date().toISOString(),
+    likedBy: ['userB'],
+    comments: [],
+    commentCount: 5
+  },
+  {
+    id: 'p1700000000013',
+    authorUsername: 'userA',
+    authorAvatarUrl: './avadefaur.png',
+    content: 'Chạy bộ mỗi sáng giúp mình khỏe hơn rất nhiều 🏃‍♂️',
+    imageUrl: '/chaybo.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: ['userD', 'userF'],
+    comments: [],
+    commentCount: 2
+  },
+  {
+    id: 'p1700000000014',
+    authorUsername: 'userB',
+    authorAvatarUrl: null,
+    content: 'Một tách cà phê đen và chút nhạc jazz là combo hoàn hảo.',
+    imageUrl: '/caphe.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: [],
+    comments: [],
+    commentCount: 0
+  },
+  {
+    id: 'p1700000000015',
+    authorUsername: 'userC',
+    authorAvatarUrl: null,
+    content: 'Trà hoa cúc kèm mật ong – đáng thử thật sự!',
+    imageUrl: '/combo.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: ['userA'],
+    comments: [],
+    commentCount: 3
+  },
+  {
+    id: 'p1700000000016',
+    authorUsername: 'userD',
+    authorAvatarUrl: null,
+    content: 'Chúc cả nhà một buổi tối bình yên ✨',
+    imageUrl: null,
+    createdAt: new Date().toISOString(),
+    likedBy: ['userE'],
+    comments: [],
+    commentCount: 1
+  },
+  {
+    id: 'p1700000000017',
+    authorUsername: 'userE',
+    authorAvatarUrl: null,
+    content: 'Trời đang mưa nhẹ, ai đó pha cho tớ ly trà nóng với 🌧️',
+    imageUrl: '/tramua.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: ['userA', 'userB'],
+    comments: [],
+    commentCount: 2
+  },
+  {
+    id: 'p1700000000018',
+    authorUsername: 'userF',
+    authorAvatarUrl: null,
+    content: 'Làm việc từ quán cafe có khi lại tập trung hơn ở nhà 😅',
+    imageUrl: '/lamviec.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: ['userG'],
+    comments: [],
+    commentCount: 2
+  },
+  {
+    id: 'p1700000000019',
+    authorUsername: 'userG',
+    authorAvatarUrl: null,
+    content: 'Đã thử mix đồ 2hand hôm nay, khá ổn áp đó chứ!',
+    imageUrl: '/2handmix.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: ['userA', 'userB', 'userC'],
+    comments: [],
+    commentCount: 5
+  },
+  {
+    id: 'p1700000000020',
+    authorUsername: 'caohao',
+    authorAvatarUrl: null,
+    content: 'Ngồi đọc sách bên cửa sổ, nghe mưa rơi rả rích. Thật chill.',
+    imageUrl: null,
+    createdAt: new Date().toISOString(),
+    likedBy: [],
+    comments: [],
+    commentCount: 0
+  },
+  {
+    id: 'p1700000000021',
+    authorUsername: 'userH',
+    authorAvatarUrl: null,
+    content: 'Tập gym 30 phút mỗi ngày là thói quen mình đang xây dựng.',
+    imageUrl: '/gym.jpg',
+    createdAt: new Date().toISOString(),
+    likedBy: ['userD'],
+    comments: [],
+    commentCount: 2
+  }
 ];
 
 const getPostsFromStorage = () => {
